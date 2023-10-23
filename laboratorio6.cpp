@@ -5,7 +5,7 @@ using namespace std;
 void operaciones_lista(queue<float> nums, float *suma, float *prom, float *prod);
 int calculo_factorial(int n);
 int calculo_fibonacci(int n);
-bool es_palindrome(string p);
+bool es_palindrome(string str);
 
 int main()
 {
@@ -44,7 +44,18 @@ int main()
 	cout  << "Digito de Fibonacci: ";
 	cin >> fibonacci;
 	
-	cout << calculo_fibonacci(fibonacci);
+	cout << calculo_fibonacci(fibonacci) << endl;
+	
+	// ejercicio 4
+	string palabra;
+	
+	cout << "Ingrese Palabra: ";
+	cin >> palabra;
+	
+	if (es_palindrome(palabra))
+		cout << palabra << " es Palindrome";
+	else
+		cout << palabra << " no es Palindrome";
 	
 	return 0;
 }
@@ -84,8 +95,13 @@ int calculo_fibonacci(int n)
 	return calculo_fibonacci(n-1) + calculo_fibonacci(n-2);
 }
 
-bool es_palindrome(string p)
+bool es_palindrome(string str)
 {
+	if (str.length() <= 1)
+		return true;
+		
+	if (str[0] == str[str.length()-1])
+		return es_palindrome(str.substr(1, str.length()-2));
 	
 	return false;
 }
